@@ -2,24 +2,29 @@ print("Mutithreading ===>thread scheduling....")
 import threading
 import sched
 
+no = 50
+
 
 def counter(fun, lock):
     fun(lock)
 
 
 def order(lock):
-    #no = int(input("Enter number"))
+    # global no
+    # no = int(input("Enter number"))
     lock.acquire()
-    for i in range(1, 50):
+    for i in range(1, no + 1):
         print("ordered", i)
     lock.release()
 
 
 def reverse(lock):
-    #no = int(input("Enter number rev"))
+    global no
+    # no = int(input("Enter number rev"))
     lock.acquire()
-    for i in range(50, 1):
-        print("reverse", i)
+    while no > 0:
+        print("reverse", no)
+        no = no - 1
     lock.release()
 
 
